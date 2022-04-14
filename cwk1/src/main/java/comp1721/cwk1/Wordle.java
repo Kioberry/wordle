@@ -1,7 +1,5 @@
-// Main program for COMP1721 Coursework 1
-// DO NOT CHANGE THIS!
-
 package comp1721.cwk1;
+
 
 import java.io.IOException;
 
