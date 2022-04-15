@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Guess {
 	private int guessNumber;
 	private String chosenWord;
+	public static String input;
   
   // Use this to get player input in readFromPlayer()
   private static final Scanner INPUT = new Scanner(System.in);
@@ -51,15 +52,17 @@ public class Guess {
 	  return chosenWord;
   }
 
-  // TODO: Implement readFromPlayer()
-  public void readFromPlayer(){
-	  
-  }
 
+  // TODO: Implement readFromPlayer()
+  public static void readFromPlayer(){
+	  input = INPUT.nextLine();
+  }
+  
   // TODO: Implement compareWith(), giving it a String parameter and String return type
   public String compareWith(String target){
-	  char[] playArr = target.toCharArray();
-	  char[] gameArr = this.chosenWord.toCharArray();
+	  char[] playArr = this.chosenWord.toCharArray();
+	  char[] gameArr = target.toCharArray();
+	  StringBuilder sb = new StringBuilder();
 	  int isFlag = 0;
 	  int i = 0;
 	  while(i<playArr.length){
@@ -70,30 +73,43 @@ public class Guess {
 			  else if (i != j && playArr[i] == gameArr[j]){
 				  isFlag = 2;
 			  }
+			  for (int m=0; m<i; m++){
+				  if (playArr[m] == playArr[i]){
+					  isFlag = 0;
+					  break;
+				  }
+			  }
 		  }
 		  if (isFlag == 0){
-			  //System.out.print(" ç™½ " + playArr[i]);
-			  System.out.printf("\033[30;107m %c \033[0m", playArr[i]);
+			  //System.out.print(" °× " + playArr[i]);
+			  String str3 = "\033[30;107m " + playArr[i] + " \033[0m";
+			  //System.out.print(str3);
+			  sb.append(str3);
 		  }
 		  if (isFlag == 1){
-			  //System.out.print(" ç»¿ " + playArr[i]);
-			  System.out.printf("\033[30;102m %c \033[0m", playArr[i]);
+			  //System.out.print(" ÂÌ " + playArr[i]);
+			  String str1 = "\033[30;102m " + playArr[i] +" \033[0m";
+			  //System.out.print(str1);
+			  sb.append(str1);
 		  }
 		  if (isFlag == 2){
-			  //System.out.print(" é»„ " + playArr[i]);
-			  System.out.printf("\033[30;103m %c \033[0m", playArr[i]);
+			  //System.out.print(" »Æ " + playArr[i]);
+			  String str2 = "\033[30;103m " + playArr[i] + " \033[0m";
+			  //System.out.print(str2);
+			  sb.append(str2);
 		  }
 		  i++;	
 		  isFlag = 0;
 	  }
 	  System.out.println();  
-	  return target;
+	  String str = sb.toString();
+	  return str;
   }
   
   // TODO: Implement matches(), giving it a String parameter and boolean return type
   public boolean matches(String target){
-	  char[] playArr = target.toCharArray();
-	  char[] gameArr = this.chosenWord.toCharArray();
+	  char[] playArr = this.chosenWord.toCharArray();
+	  char[] gameArr = target.toCharArray();
 	  for (int i=0; i<playArr.length; i++){
 		  if (playArr[i] != gameArr[i]){
 			  return false;

@@ -21,7 +21,8 @@ public class WordList {
 			if(str.trim().length() == 5){
 				words.add(str);
 			}
-        }	
+        }
+		br.close();
 	}
 	
   // TODO: Implement size() method, returning an int
@@ -38,6 +39,6 @@ public class WordList {
 		}
 		
 	}
-
+	
 	
 }
