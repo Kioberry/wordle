@@ -9,15 +9,32 @@ public class Wordle {
     Game game;
 
     if (args.length > 0) {
-      // Player wants to specify the game
-      game = new Game(Integer.parseInt(args[0]), "data/words.txt");
+      //judge whether the args[0] is about people who are visually impaired
+//      if (args[0] == "-a"){
+//    	  if (args.length == 2){
+//    		  game = new Game(Integer.parseInt(args[1]), "data/words.txt");
+//    		  game.playa();
+//    	  }
+//    	  else {
+//    		  game = new Game("data/words.txt");
+//    		  game.playa();
+//    	  }
+//      }
+//      else{
+    	  // Player wants to specify the game
+          game = new Game(Integer.parseInt(args[0]), "data/words.txt");
+          //game.play();
+//      }
+      
     }
     else {
       // Play today's game
       game = new Game("data/words.txt");
+      //game.play();
     }
 
     game.play();
+    //game.playa();
     game.save("build/lastgame.txt");
   }
 }
