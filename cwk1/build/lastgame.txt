@@ -1,1 +1,4 @@
-[30;102m S [0m[30;102m Q [0m[30;102m U [0m[30;102m A [0m[30;102m D [0m
+1st correct but in wrong place, 2nd perfect
+1st correct but in wrong place, 2nd and 5st perfect
+2nd, 3rd, 4st and 5st perfect
+You won!

@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Guess {
 	private int guessNumber;
 	private String chosenWord;
-	public static String input;
+	
   
   // Use this to get player input in readFromPlayer()
   private static final Scanner INPUT = new Scanner(System.in);
@@ -56,10 +56,15 @@ public class Guess {
 
 
   // TODO: Implement readFromPlayer()
-  public static void readFromPlayer(){
-	  input = INPUT.nextLine();
+  public void readFromPlayer() throws GameException {
+	  String str = INPUT.nextLine();
+	  if (str.length() == 5){
+		  this.chosenWord = str;
+	  }else {
+		  throw new GameException("Invalid input of word");
+	  }
   }
-  
+  // TODO: Implement compareWitha(), giving it a String parameter and String return type
   public String compareWitha(String target){
 	  char[] playArr = this.chosenWord.toCharArray();
 	  char[] gameArr = target.toCharArray();
@@ -76,14 +81,17 @@ public class Guess {
 				  isFlag = 1;
 			  }
 			  else if (i != j && playArr[i] == gameArr[j]){
-				  isFlag = 2;
-			  }
-			  for (int m=0; m<i; m++){
-				  if (playArr[m] == playArr[i]){
-					  isFlag = 0;
-					  break;
+				  for (int m=0; m<i; m++){
+					  if (playArr[m] == playArr[i]){
+						  isFlag = 3;
+						  break;
+					  }
+				  }
+				  if(isFlag !=3){
+					  isFlag = 2;
 				  }
 			  }
+			  
 		  }
 		  if (isFlag == 1){//green
 			  String str1 = null;
@@ -194,18 +202,23 @@ public class Guess {
 		  for (int j=0; j<gameArr.length; j++){
 			  if (i == j && playArr[i] == gameArr[j]){
 				  isFlag = 1;
+				  break;
 			  }
 			  else if (i != j && playArr[i] == gameArr[j]){
-				  isFlag = 2;
-			  }
-			  for (int m=0; m<i; m++){
-				  if (playArr[m] == playArr[i]){
-					  isFlag = 0;
-					  break;
+				  for (int m=0; m<i; m++){
+					  if (playArr[m] == playArr[i]){
+						  isFlag = 3;
+						  break;
+					  }
 				  }
+				  if (isFlag != 3){
+					  isFlag = 2;
+					  break;
+				  } 
 			  }
+			  
 		  }
-		  if (isFlag == 0){
+		  if (isFlag == 0 || isFlag == 3){
 			  String str3 = "\033[30;107m " + playArr[i] + " \033[0m";
 			  sb.append(str3);
 		  }

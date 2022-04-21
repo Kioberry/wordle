@@ -32,7 +32,7 @@ public class WordList {
 	
   // TODO: Implement getWord() with an int parameter, returning a String
 	public String getWord(int n) throws GameException {
-		if (n >= 0 && n < this.size()){
+		if (n >= 0 && n < this.words.size()){
 			return words.get(n);
 		}else{
 			throw new GameException("Invalid input of game number.");

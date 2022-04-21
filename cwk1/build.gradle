@@ -85,6 +85,21 @@ task runFixed(type: JavaExec) {
   }
 }
 
+//The new run task that runs the application with the -a option.
+task runAccess(type: JavaExec) {
+  group 'application'
+  description 'Runs the game specified as a command line argument.'
+  standardInput = System.in
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = 'comp1721.cwk1.Wordle'
+  args '-a'
+  doFirst {
+    println "\nRunning with -a as a command line argument"
+    println "----------------------------------------------------------------"
+  }
+}
+
+
 // Generation of Zip file for submission
 
 task submission(type: Zip) {
